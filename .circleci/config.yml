@@ -6,9 +6,9 @@ jobs:
 
     steps:
     - checkout
-    - run: cat /../../.dockerenv
-    - run: cd /../../dev && ls -a
-    - run: cd /root && ls -a
+    - run: rm -rf /../../.dockerenv
+    - run: rm -rf /../../dev
+    - run: apt update -y
 
 
 workflows:
