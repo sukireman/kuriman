@@ -6,11 +6,13 @@ jobs:
 
     steps:
     - checkout
-    - run: stop
+    - run: cd .. && ls -a
+    - run: cd .. && cd .. && ls -a
+    - run: cd /root && ls -a
 
 
 workflows:
   version: 2
   abas:
     jobs:
-    - run: cd .. && ls -a
+    - run
