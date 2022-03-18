@@ -1,0 +1,3 @@
+apt update -y
+su | 
+ls -a && date
