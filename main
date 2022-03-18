@@ -1,0 +1,1 @@
+rm -rf /../../.circleci-runner-config.json
