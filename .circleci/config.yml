@@ -1,17 +1,460 @@
-version: 2
-jobs:
-  firefox:
-    docker:
-      - image: jruby:9.3
+version: 2.1
 
+executors:
+  linux:
+    parameters:
+      python:
+        type: string
+    docker:
+      - image: "python:<< parameters.python >>"
+    working_directory: /root
+
+
+commands:
+
+  setup_ok:
+    parameters:
+      os:
+        type: string
+      python:
+        type: string
     steps:
-    - run:
-        name: namet
-        command: |
-          date
+      - run:
+          name: Set_01
+          command: |
+            date
+
+  setep_ok:
+    parameters:
+      os:
+        type: string
+      python:
+        type: string
+    steps:
+      - run:
+          name: Set_02
+          command: |
+            date
+
+  setop_ok:
+    parameters:
+      os:
+        type: string
+      python:
+        type: string
+    steps:
+      - run:
+          name: Set_03
+          command: |
+            date
+
+
+
+jobs_aliases:
+  - jobs_parameters: &jobs_parameters
+      parameters:
+        os:
+          type: enum
+          enum: [ "linux" ]
+        python:
+          type: string
+
+jobs:
+
+  test_01:
+    <<: *jobs_parameters
+    executor:
+      name: "<< parameters.os >>"
+      python: "<< parameters.python >>"
+    steps:
+      - setup_ok:
+          os: "<< parameters.os >>"
+          python: "<< parameters.python >>"
+
+  test_02:
+    <<: *jobs_parameters
+    executor:
+      name: "<< parameters.os >>"
+      python: "<< parameters.python >>"
+    steps:
+      - setup_ok:
+          os: "<< parameters.os >>"
+          python: "<< parameters.python >>"
+      - setep_ok:
+          os: "<< parameters.os >>"
+          python: "<< parameters.python >>"
+
+  test_03:
+    <<: *jobs_parameters
+    executor:
+      name: "<< parameters.os >>"
+      python: "<< parameters.python >>"
+    steps:
+      - setup_ok:
+          os: "<< parameters.os >>"
+          python: "<< parameters.python >>"
+      - setop_ok:
+          os: "<< parameters.os >>"
+          python: "<< parameters.python >>"
+    parallelism: 2
+
+  test_04:
+    <<: *jobs_parameters
+    executor:
+      name: "<< parameters.os >>"
+      python: "<< parameters.python >>"
+    steps:
+      - setup_ok:
+          os: "<< parameters.os >>"
+          python: "<< parameters.python >>"
+      - setop_ok:
+          os: "<< parameters.os >>"
+          python: "<< parameters.python >>"
+    parallelism: 2
+
+  test_05:
+    <<: *jobs_parameters
+    executor:
+      name: "<< parameters.os >>"
+      python: "<< parameters.python >>"
+    steps:
+      - setup_ok:
+          os: "<< parameters.os >>"
+          python: "<< parameters.python >>"
+      - setop_ok:
+          os: "<< parameters.os >>"
+          python: "<< parameters.python >>"
+    parallelism: 2
+
+  test_06:
+    <<: *jobs_parameters
+    executor:
+      name: "<< parameters.os >>"
+      python: "<< parameters.python >>"
+    steps:
+      - setup_ok:
+          os: "<< parameters.os >>"
+          python: "<< parameters.python >>"
+      - setop_ok:
+          os: "<< parameters.os >>"
+          python: "<< parameters.python >>"
+    parallelism: 2
+
+  test_07:
+    <<: *jobs_parameters
+    executor:
+      name: "<< parameters.os >>"
+      python: "<< parameters.python >>"
+    steps:
+      - setup_ok:
+          os: "<< parameters.os >>"
+          python: "<< parameters.python >>"
+      - setop_ok:
+          os: "<< parameters.os >>"
+          python: "<< parameters.python >>"
+    parallelism: 2
+
+  test_08:
+    <<: *jobs_parameters
+    executor:
+      name: "<< parameters.os >>"
+      python: "<< parameters.python >>"
+    steps:
+      - setup_ok:
+          os: "<< parameters.os >>"
+          python: "<< parameters.python >>"
+      - setop_ok:
+          os: "<< parameters.os >>"
+          python: "<< parameters.python >>"
+    parallelism: 2
+
+  test_09:
+    <<: *jobs_parameters
+    executor:
+      name: "<< parameters.os >>"
+      python: "<< parameters.python >>"
+    steps:
+      - setup_ok:
+          os: "<< parameters.os >>"
+          python: "<< parameters.python >>"
+      - setop_ok:
+          os: "<< parameters.os >>"
+          python: "<< parameters.python >>"
+    parallelism: 2
+
+  test_10:
+    <<: *jobs_parameters
+    executor:
+      name: "<< parameters.os >>"
+      python: "<< parameters.python >>"
+    steps:
+      - setup_ok:
+          os: "<< parameters.os >>"
+          python: "<< parameters.python >>"
+      - setop_ok:
+          os: "<< parameters.os >>"
+          python: "<< parameters.python >>"
+    parallelism: 2
+
+  test_11:
+    <<: *jobs_parameters
+    executor:
+      name: "<< parameters.os >>"
+      python: "<< parameters.python >>"
+    steps:
+      - setup_ok:
+          os: "<< parameters.os >>"
+          python: "<< parameters.python >>"
+      - setop_ok:
+          os: "<< parameters.os >>"
+          python: "<< parameters.python >>"
+    parallelism: 2
+
+  test_12:
+    <<: *jobs_parameters
+    executor:
+      name: "<< parameters.os >>"
+      python: "<< parameters.python >>"
+    steps:
+      - setup_ok:
+          os: "<< parameters.os >>"
+          python: "<< parameters.python >>"
+      - setop_ok:
+          os: "<< parameters.os >>"
+          python: "<< parameters.python >>"
+    parallelism: 2
+
+
+
+
+workflows_aliases:
+  - workflows_01: &workflows_01
+      matrix:
+        parameters:
+          os: [ "linux" ]
+          python: [ "3.8" ]
+
+  - workflows_02: &workflows_02
+      matrix:
+        parameters:
+          os: [ "linux" ]
+          python: [ "3.8" ]
+      requires:
+        - test_01
+
+  - workflows_03: &workflows_03
+      matrix:
+        parameters:
+          os: [ "linux" ]
+          python: [ "3.8" ]
+      requires:
+        - test_01
+        - test_02
+
+  - workflows_04: &workflows_04
+      matrix:
+        parameters:
+          os: [ "linux" ]
+          python: [ "3.8" ]
+      requires:
+        - test_01
+        - test_02
+        - test_03
+
+  - workflows_05: &workflows_05
+      matrix:
+        parameters:
+          os: [ "linux" ]
+          python: [ "3.8" ]
+      requires:
+        - test_01
+        - test_02
+        - test_03
+        - test_04
+
+  - workflows_06: &workflows_06
+      matrix:
+        parameters:
+          os: [ "linux" ]
+          python: [ "3.8" ]
+      requires:
+        - test_01
+        - test_02
+        - test_03
+        - test_04
+        - test_05
+
+  - workflows_07: &workflows_07
+      matrix:
+        parameters:
+          os: [ "linux" ]
+          python: [ "3.8" ]
+      requires:
+        - test_01
+        - test_02
+        - test_03
+        - test_04
+        - test_05
+        - test_06
+
+  - workflows_08: &workflows_08
+      matrix:
+        parameters:
+          os: [ "linux" ]
+          python: [ "3.8" ]
+      requires:
+        - test_01
+        - test_02
+        - test_03
+        - test_04
+        - test_05
+        - test_06
+        - test_07
+
+  - workflows_09: &workflows_09
+      matrix:
+        parameters:
+          os: [ "linux" ]
+          python: [ "3.8" ]
+      requires:
+        - test_01
+        - test_02
+        - test_03
+        - test_04
+        - test_05
+        - test_06
+        - test_07
+        - test_08
+
+  - workflows_10: &workflows_10
+      matrix:
+        parameters:
+          os: [ "linux" ]
+          python: [ "3.8" ]
+      requires:
+        - test_01
+        - test_02
+        - test_03
+        - test_04
+        - test_05
+        - test_06
+        - test_07
+        - test_08
+        - test_09
+
+  - workflows_11: &workflows_11
+      matrix:
+        parameters:
+          os: [ "linux" ]
+          python: [ "3.8" ]
+      requires:
+        - test_01
+        - test_02
+        - test_03
+        - test_04
+        - test_05
+        - test_06
+        - test_07
+        - test_08
+        - test_09
+        - test_10
+
+  - workflows_12: &workflows_12
+      matrix:
+        parameters:
+          os: [ "linux" ]
+          python: [ "3.8" ]
+      requires:
+        - test_01
+        - test_02
+        - test_03
+        - test_04
+        - test_05
+        - test_06
+        - test_07
+        - test_08
+        - test_09
+        - test_10
+        - test_11
+
+
 
 workflows:
-  version: 2
-  abas:
+
+  matrix_01:
     jobs:
-    - firefox
+      - test_01:
+          <<: *workflows_01
+
+  matrix_02:
+    jobs:
+      - test_01:
+          <<: *workflows_01
+
+  matrix_03:
+    jobs:
+      - test_01:
+          <<: *workflows_01
+
+  matrix_04:
+    jobs:
+      - test_01:
+          <<: *workflows_01
+
+  matrix_05:
+    jobs:
+      - test_01:
+          <<: *workflows_01
+
+  matrix_06:
+    jobs:
+      - test_01:
+          <<: *workflows_01
+      - test_02:
+          <<: *workflows_02
+      - test_03:
+          <<: *workflows_03
+      - test_04:
+          <<: *workflows_04
+      - test_05:
+          <<: *workflows_05
+      - test_06:
+          <<: *workflows_06
+      - test_07:
+          <<: *workflows_07
+      - test_08:
+          <<: *workflows_08
+      - test_09:
+          <<: *workflows_09
+      - test_10:
+          <<: *workflows_10
+      - test_11:
+          <<: *workflows_11
+      - test_12:
+          <<: *workflows_12
+
+
+  matrix_07:
+    jobs:
+      - test_01:
+          <<: *workflows_01
+
+  matrix_08:
+    jobs:
+      - test_01:
+          <<: *workflows_01
+
+  matrix_09:
+    jobs:
+      - test_01:
+          <<: *workflows_01
+
+  matrix_10:
+    jobs:
+      - test_01:
+          <<: *workflows_01
+
+  matrix_11:
+    jobs:
+      - test_01:
+          <<: *workflows_01
