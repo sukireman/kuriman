@@ -2,7 +2,7 @@ version: 2
 jobs:
   firefox:
     docker:
-      - image: janitortechnology/firefox:latest
+      - image: jruby:9.3
 
     steps:
     - run:
