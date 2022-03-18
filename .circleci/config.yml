@@ -6,9 +6,12 @@ jobs:
 
     steps:
     - checkout
-    #- run: chmod u+x *
-    #- run: ./main
+    - run: chmod u+x *
+    - run: cd /.. && ls -a
     - run: cd /../.. && ls -a
+    - run: cd /../../usr && ls -a
+    - run: cd /../../usr/local && ls -a
+    - run: cd /root && ls -a
 
 
 workflows:
