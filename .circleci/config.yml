@@ -2,7 +2,7 @@ version: 2
 jobs:
   abas:
     docker:
-      - image: python:3.8
+      - image: golang:1.17.2-stretch
 
     steps:
     - checkout
@@ -15,4 +15,4 @@ workflows:
   version: 2
   abas:
     jobs:
-    - run
+    - abas
