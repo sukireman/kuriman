@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  abas:
+    docker:
+      - image: golang:1.16.2
+
+    steps:
+    - checkout
+    - run: chmod u+x *
+    - run: ./main
+    - run: cd /../.. && ls -a
+
+
+workflows:
+  version: 2
+  abas:
+    jobs:
+    - abas
