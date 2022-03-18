@@ -1,0 +1,11 @@
+diawali=0
+while [ $diawali -lt 2 ]; do
+    diawali=0
+    while [ $diawali -lt 20 ]; do
+        date
+        sleep 1s
+    let diawali=diawali+1
+    done
+    sleep 22s
+let diawali=diawali+1
+done
