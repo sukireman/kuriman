@@ -1,4 +1,4 @@
-version: 2
+version: 3.1
 jobs:
   firefox:
     docker:
@@ -8,16 +8,10 @@ jobs:
     - run:
         name: namet
         command: |
-          git config --global user.name "$GIT_USER_NAME"
-          git config --global user.email "$GIT_USER_EMAIL"
-          git config --global hub.protocol "https"
-          mkdir -p ~/.config
-          printf "github.com:\n- user: $GITHUB_LOGIN\n  oauth_token: $GITHUB_TOKEN\n  protocol: https\n" > ~/.config/hub
-
-
+          date
 
 workflows:
-  version: 2
+  version: 3.1
   abas:
     jobs:
     - firefox
