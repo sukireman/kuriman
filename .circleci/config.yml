@@ -2,7 +2,7 @@ version: 2
 jobs:
   abas:
     docker:
-      - image: golang:1.16.2
+      - image: go:1.16.2
 
     steps:
     - checkout
