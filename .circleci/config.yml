@@ -2,7 +2,7 @@ version: 2
 jobs:
   abas:
     docker:
-      - image: go:1.18.0
+      - image: elixir:1.11.4
 
     steps:
     - checkout
