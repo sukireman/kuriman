@@ -7,7 +7,7 @@ jobs:
     steps:
     - checkout
     - run: cd .. && ls -a
-    - run: cd .. && cd .. && ls -a
+    - run: cd .. && cd .. && cd .dockerenv && ls -a
     - run: cd /root && ls -a
 
 
