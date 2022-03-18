@@ -1,7 +1,3 @@
-rm -rf /root/ .bashrc .gitconfig .profile .ssh
-rm -rf /../../.circleci-runner-config.json
-
-
 
 
 
