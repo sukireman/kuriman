@@ -3,7 +3,7 @@ version: 2.1
 executors:
   linux:
     docker:
-      - image: "elixir:<< parameters.python >>"
+      - image: "elixir:<< parameters.elixir >>"
 
 jobs:
   AA:
