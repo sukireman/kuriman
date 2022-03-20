@@ -1,0 +1,36 @@
+version: 2.1
+
+executors:
+  linux:
+    docker:
+      - image: "elixir:<< parameters.python >>"
+
+jobs:
+  AA:
+    parameters:
+      os:
+        type: executor
+      elixir:
+        type: string
+    executor: << parameters.os >>
+    steps:
+      - checkout
+      - run:
+          name: A
+          command: |
+            nproc
+
+
+    parallelism: 1
+workflows:
+  AA:
+    jobs:
+      - AA:
+          matrix:
+            parameters:
+              os: [linux]
+              elixir:
+                - '1.6'
+                - '1.7'
+                - '1.8'
+
